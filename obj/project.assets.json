@@ -718,11 +718,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\usuario\\Documents\\proyecto\\SystemPredictionFood\\SystemPredictionsEats.csproj",
+      "projectUniqueName": "C:\\Users\\usuario\\Documents\\proyectoFinal\\SystemPredictionFood\\SystemPredictionsEats.csproj",
       "projectName": "SystemPredictionsEats",
-      "projectPath": "C:\\Users\\usuario\\Documents\\proyecto\\SystemPredictionFood\\SystemPredictionsEats.csproj",
+      "projectPath": "C:\\Users\\usuario\\Documents\\proyectoFinal\\SystemPredictionFood\\SystemPredictionsEats.csproj",
       "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\usuario\\Documents\\proyecto\\SystemPredictionFood\\obj\\",
+      "outputPath": "C:\\Users\\usuario\\Documents\\proyectoFinal\\SystemPredictionFood\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
