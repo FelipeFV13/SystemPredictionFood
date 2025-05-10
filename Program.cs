@@ -113,42 +113,115 @@ namespace SystemPredictionsEats
             var model = pipeline.Fit(data);
             var predictionsEngine = context.Model.CreatePredictionEngine<EatRating, FoodPrediction>(model);
 
-            while (true)
-            {
-                Console.WriteLine("Si escribes un usuario con Id par, coloca un plato con id par para ver la predicción.");
-                Console.WriteLine("Si escribes un usuario con Id Impar, coloca un plato con id impar para ver la predicción.");
+            //while (true)
+            //{
+            //    Console.WriteLine("Si escribes un usuario con Id par, coloca un plato con id par para ver la predicción.");
+            //    Console.WriteLine("Si escribes un usuario con Id Impar, coloca un plato con id impar para ver la predicción.");
 
-                Console.WriteLine("Ingrese ID de Usuario: "); ;
-                float userID = float.Parse(Console.ReadLine());
+            //    Console.WriteLine("Ingrese ID de Usuario: "); ;
+            //    float userID = float.Parse(Console.ReadLine());
 
-                Console.WriteLine("Ingrese ID de la comida: ");
-                float foodID = float.Parse(Console.ReadLine());
+            //    Console.WriteLine("Ingrese ID de la comida: ");
+            //    float foodID = float.Parse(Console.ReadLine());
 
-                var prediction = predictionsEngine.Predict(new EatRating
+            //    var prediction = predictionsEngine.Predict(new EatRating
+            //    {
+            //        UserId = userID,
+            //        FoodId = foodID,
+
+            //    });
+
+            //    if (prediction.Score <= 5)
+            //    {
+            //        Console.ForegroundColor = ConsoleColor.Red;
+            //        Console.WriteLine($"Prediccion de clasificacion para el usuario {userID} en la comida {foods[(int)foodID]}: {prediction.Score:0.00}");
+            //        Console.ForegroundColor = ConsoleColor.White;
+            //    }
+            //    else if (prediction.Score <= 7)
+            //    {
+            //        Console.ForegroundColor = ConsoleColor.Yellow;
+            //        Console.WriteLine($"Prediccion de clasificacion para el usuario {userID} en la comida {foods[(int)foodID]}: {prediction.Score:0.00}");
+            //        Console.ForegroundColor = ConsoleColor.White;
+            //    }
+            //    else
+            //    {
+            //        Console.ForegroundColor = ConsoleColor.Green;
+            //        Console.WriteLine($"Prediccion de clasificacion para el usuario {userID} en la comida {foods[(int)foodID]}: {prediction.Score:0.00}");
+            //        Console.ForegroundColor = ConsoleColor.White;
+            //    };
+            //}
+
+            for (int i = 1; i < 10; i++)
+            {   
+                for (int j = 1; j < 24; j++)
                 {
-                    UserId = userID,
-                    FoodId = foodID,
+                    float userID = (float) i;
+                    float foodID = (float)j;
 
-                });
+                    var prediction = predictionsEngine.Predict(new EatRating
+                    {
+                        UserId = userID,
+                        FoodId = foodID,
 
-                if (prediction.Score <= 5)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Prediccion de clasificacion para el usuario {userID} en la comida {foods[(int)foodID]}: {prediction.Score:0.00}");
-                    Console.ForegroundColor = ConsoleColor.White;
+                    });
+
+
+                    if (userID % 2 == 0)
+                    {
+                        
+                        if (foodID % 2 == 0)
+                        {
+                            if (prediction.Score <= 5)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine($"Prediccion de clasificacion para el usuario {userID} en la comida {foods[(int)foodID]}: {prediction.Score:0.00}");
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
+                            else if (prediction.Score <= 7)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine($"Prediccion de clasificacion para el usuario {userID} en la comida {foods[(int)foodID]}: {prediction.Score:0.00}");
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine($"Prediccion de clasificacion para el usuario {userID} en la comida {foods[(int)foodID]}: {prediction.Score:0.00}");
+                                Console.ForegroundColor = ConsoleColor.White;
+                            };
+                        }
+
+                    }
+                    else
+                    {
+                        if (foodID % 2 != 0)
+                        {
+                            if (prediction.Score <= 5)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine($"Prediccion de clasificacion para el usuario {userID} en la comida {foods[(int)foodID]}: {prediction.Score:0.00}");
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
+                            else if (prediction.Score <= 7)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine($"Prediccion de clasificacion para el usuario {userID} en la comida {foods[(int)foodID]}: {prediction.Score:0.00}");
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine($"Prediccion de clasificacion para el usuario {userID} en la comida {foods[(int)foodID]}: {prediction.Score:0.00}");
+                                Console.ForegroundColor = ConsoleColor.White;
+                            };
+
+                        }
+
+                        
+                    }
+
                 }
-                else if (prediction.Score <= 7)
-                {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine($"Prediccion de clasificacion para el usuario {userID} en la comida {foods[(int)foodID]}: {prediction.Score:0.00}");
-                    Console.ForegroundColor = ConsoleColor.White;
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"Prediccion de clasificacion para el usuario {userID} en la comida {foods[(int)foodID]}: {prediction.Score:0.00}");
-                    Console.ForegroundColor = ConsoleColor.White;
-                };
+                Console.WriteLine(" ");
             }
 
         }
