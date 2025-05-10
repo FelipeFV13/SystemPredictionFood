@@ -9,6 +9,7 @@ namespace SystemPredictionsEats
     {
         static void Main(string[] args)
         {
+            Random random = new Random();
             var context = new MLContext();
 
             var foods = new Dictionary<int, string>
@@ -23,19 +24,19 @@ namespace SystemPredictionsEats
                 {8, "Empanadas" },
                 {9, "Arepas" },
                 {10, "Fritanga" },
-                //{11, "Buñuelo" },
-                //{12, "Natilla" },
-                //{13, "Pan de Bono" },
-                //{14, "Garbanzos con callo"},
-                //{15, "Hormiga culona" },
-                //{16, "Gelatina de pata"},
-                //{17, "Mojojoy" },
-                //{18, "sopa de criadilla" },
-                //{19, "Chanfaina" },
-                //{20, "Pelanga" },
-                //{21, "Salpicon"},
-                //{22, "chunchullo"},
-                //{23,  "Paella de Mariscos" }
+                {11, "Buñuelo" },
+                {12, "Natilla" },
+                {13, "Pan de Bono" },
+                {14, "Garbanzos con callo"},
+                {15, "Hormiga culona" },
+                {16, "Gelatina de pata"},
+                {17, "Mojojoy" },
+                {18, "sopa de criadilla" },
+                {19, "Chanfaina" },
+                {20, "Pelanga" },
+                {21, "Salpicon"},
+                {22, "chunchullo"},
+                {23,  "Paella de Mariscos" }
 
             };
 
@@ -57,9 +58,10 @@ namespace SystemPredictionsEats
                 }
             }
 
-            var otherRathings = new List<EatRating>
-            {
-                new EatRating {UserId = 2, FoodId = 1, label = 9},
+
+            var otherRathings = new List<EatRating>();
+            
+                /*new EatRating {UserId = 2, FoodId = 1, label = 9},
                 new EatRating {UserId = 2, FoodId = 2, label = 7},
                 new EatRating {UserId = 2, FoodId = 4, label = 8},
                 new EatRating {UserId = 2, FoodId = 5, label = 6},
@@ -82,8 +84,18 @@ namespace SystemPredictionsEats
                 new EatRating {UserId = 6, FoodId = 1, label = 10},
                 //new EatRating {UserId = 6, FoodId = 12, label = 6},
                 //new EatRating {UserId = 6, FoodId = 17, label = 4},
-                //new EatRating {UserId = 6, FoodId = 20, label = 7},
-            };
+                //new EatRating {UserId = 6, FoodId = 20, label = 7},*/
+
+      
+
+            for (int i = 1; i < 11; i++)
+            {
+                for (int j = 1; j < 24; j++)
+                {
+                    int randomNumber = random.Next(1, 11);
+                    otherRathings.Add(new EatRating { UserId = i, FoodId = j, label = randomNumber });
+                }
+            }
 
             var allRatings = userRating.Concat(otherRathings);
 
@@ -122,10 +134,27 @@ namespace SystemPredictionsEats
 
                 });
 
-                Console.WriteLine($"Prediccion de clasificacion para el usuario {userID} en la comida {foods[(int)foodID]}: {prediction.Score:0.00}");
+                if(prediction.Score <= 5)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Prediccion de clasificacion para el usuario {userID} en la comida {foods[(int)foodID]}: {prediction.Score:0.00}");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else if( prediction.Score <= 7)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"Prediccion de clasificacion para el usuario {userID} en la comida {foods[(int)foodID]}: {prediction.Score:0.00}");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"Prediccion de clasificacion para el usuario {userID} en la comida {foods[(int)foodID]}: {prediction.Score:0.00}");
+                    Console.ForegroundColor = ConsoleColor.White;
+                };
+                
 
-                //Todo
-                // colores, y rellenar la matriz
+                
             }
         }
     }
